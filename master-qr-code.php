@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /*
  * Plugin Name:       Master QR Code
@@ -16,30 +16,23 @@
  * Domain Path:       /languages
  */
 
-class MQR_master_qr_code{
-	public function __construct(){
-		add_action("init", array( $this,"init") );
-	}
-	public function init(){
-		add_filter("the_content", array( $this,"display_qr_code") );
-	}
-	function display_qr_code($content){
-		$page_link=esc_url(get_permalink());
-		$image_of_QR_code="<div style='margin:20px 0;' ><img src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={$page_link}' ></div>";
-		$content.=$image_of_QR_code;
-		return $content;
+class MQR_master_qr_code {
 
+	private $size  = '200';
+	private $color = '03B76A';
+	public function __construct() {
+		add_action( 'init', array( $this, 'init' ) );
+	}
+	public function init() {
+		add_filter( 'the_content', array( $this, 'display_qr_code' ) );
+		$this->size  = apply_filters( 'mqrc_qr_code_size', $this->size );
+		$this->color = apply_filters( 'mqrc_color', $this->color );
+	}
+	function display_qr_code( $content ) {
+		$page_link        = esc_url( get_permalink() );
+		$image_of_QR_code = "<div style='margin:20px 0;' ><img src='https://api.qrserver.com/v1/create-qr-code/?size={$this->size}x{$this->size}&color={$this->color}&data={$page_link}' ></div>";
+		$content         .= $image_of_QR_code;
+		return $content;
 	}
 }
 new MQR_master_qr_code();
-
-
-
-
-
-
-
-
-
-
- ?>

@@ -1,0 +1,18 @@
+{
+    "name": "aniab/master-qr-code",
+    "type": "wordpress-plugin",
+    "license": "GPLv2.0",
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "require-dev": {
+        "wp-coding-standards/wpcs": "^3.0"
+    },
+    "scripts": {
+        "lint": "phpcs",
+        "lint:fix": "phpcbf"
+    }
+}
+
