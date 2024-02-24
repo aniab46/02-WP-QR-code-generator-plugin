@@ -24,7 +24,9 @@ class MQR_master_qr_code {
 		add_action( 'init', array( $this, 'init' ) );
 	}
 	public function init() {
-		add_filter( 'the_content', array( $this, 'display_qr_code' ) );
+		require_once('query-data.php');
+		//require_once plugin_dir_path( __FILE__ ) .'query-data.php';
+		//add_filter( 'the_content', array( $this, 'display_qr_code' ) );
 		$this->size  = apply_filters( 'mqrc_qr_code_size', $this->size );
 		$this->color = apply_filters( 'mqrc_color', $this->color );
 	}
